@@ -45,6 +45,7 @@ a {
   margin-bottom: 0.833rem;
 }
 .panel .inner {
+  padding: 1rem 1.5rem;
   position: absolute;
   top: -2.125rem;
   left: -5.5rem;
@@ -160,4 +161,37 @@ a {
   100% {
     transform: translateY(-50%);
   }
+}
+.point {
+  height: 14.167rem;
+}
+.point .chart {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.point .chart .pie {
+  margin-left: -0.4rem;
+  width: 13rem;
+  height: 10rem;
+}
+.point .chart .data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 7rem;
+  padding: 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background-image: url(../images/rect.png);
+  background-size: cover;
+}
+.point h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.167rem;
+  color: #fff;
+}
+.point span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
 }

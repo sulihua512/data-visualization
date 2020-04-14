@@ -41,4 +41,54 @@
         // $(this).append($cloneList)
         $(this).append($(this).children().clone())
     })
+})();
+
+ (function () {
+     var option = {
+         tooltip: {
+             trigger: 'item',
+             formatter: '{a} <br/>{b} : {c} ({d}%)'
+         },
+        
+         series: [
+             {
+                 name: '点位统计',
+                 type: 'pie',
+                 radius: [10, 70],
+                 center: ['50%', '50%'],
+                 roseType: 'radius',
+                 label: {
+                     show: true
+                 },
+                 emphasis: {
+                     label: {
+                         show: true
+                     }
+                 },
+                 data: [
+                     { value: 20, name: '云南' },
+                     { value: 26, name: '北京' },
+                     { value: 24, name: '山东' },
+                     { value: 25, name: '河北' },
+                     { value: 20, name: '江苏' },
+                     { value: 25, name: '浙江' },
+                     { value: 30, name: '四川' },
+                     { value: 42, name: '湖北' }
+                 ],
+                 label: {
+                     fontSize: 10
+                 },
+                 labelLine: {
+                     length: 8,
+                     length2:10
+                 }
+            },
+           
+         ],
+         // 每块图颜色
+        color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff']
+    };
+    
+     var myChart = echarts.init($('.pie')[0]);
+     myChart.setOption(option);
 })()
