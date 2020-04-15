@@ -184,15 +184,15 @@
 
     // 订单区域-效果
     ; (function () {
-     // 1. 准备数据
+        // 1. 准备数据
         var data = {
             day365: { orders: '20,301,987', amount: '99834' },
             day90: { orders: '301,987', amount: '9834' },
             day30: { orders: '1,987', amount: '3834' },
             day1: { orders: '987', amount: '834' }
-        }   
+        }
         // 获取显示 订单数量 容器
-        var $h4Orders =  $('.order h4:eq(0)')
+        var $h4Orders = $('.order h4:eq(0)')
         // 获取显示 金额数量 容器
         var $h4Amount = $('.order h4:eq(1)')
         $('.order').on('click', '.filter a', function () {
@@ -211,4 +211,75 @@
             if (index >= 4) index = 0
             $allTab.eq(index).click()
         }, 5000);
+    })()
+    
+    ; (function () {
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                textStyle: {
+                    color: '#4c9bfd' // 图例文字颜色
+                },
+                right: '10%' // 距离右边10%
+            },
+            grid: {
+                show: true,// 显示边框
+                top: '20%',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                borderColor: '#012f4a',// 边框颜色
+                containLabel: true // 包含刻度文字在内
+            },
+            xAxis: {
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#4c9bfd' // 文本颜色
+                },
+                axisLine: {
+                    show: false // 去除轴线
+                },
+                boundaryGap: false  // 去除轴内间距
+            },
+            yAxis: {
+                type: 'value',
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#4c9bfd' // 文本颜色
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#012f4a' // 分割线颜色
+                    }
+                }
+            },
+            series: [{
+                name:'预期销售额',
+                data:[24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+                type: 'line',
+                 // 圆滑连接                                  
+                smooth: true,
+                itemStyle: {
+                    color: '#00f2f1'  // 线颜色
+                }
+            }, {
+                    name: '实际销售额',
+                    data:[40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79],
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        color: '#ed3f35'  // 线颜色
+                      }
+            }]
+        };
+        var myChart = echarts.init($('.line')[0]);
+        myChart.setOption(option);
     })()
