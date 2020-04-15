@@ -210,10 +210,29 @@
             index++;
             if (index >= 4) index = 0
             $allTab.eq(index).click()
-        }, 5000);
+        }, 2000);
     })()
     
+    // 销售统计
     ; (function () {
+        var data = {
+            year: [
+              [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+              [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+            ],
+            quarter: [
+              [23, 75, 12, 97, 21, 67, 98, 21, 43, 64, 76, 38],
+              [43, 31, 65, 23, 78, 21, 82, 64, 43, 60, 19, 34]
+            ],
+            month: [
+              [34, 87, 32, 76, 98, 12, 32, 87, 39, 36, 29, 36],
+              [56, 43, 98, 21, 56, 87, 43, 12, 43, 54, 12, 98]
+            ],
+            week: [
+              [43, 73, 62, 54, 91, 54, 84, 43, 86, 43, 54, 53],
+              [32, 54, 34, 87, 32, 45, 62, 68, 93, 54, 54, 24]
+            ]
+          }
         var option = {
             tooltip: {
                 trigger: 'axis'
@@ -263,7 +282,7 @@
             },
             series: [{
                 name:'预期销售额',
-                data:[24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+                data:data.year[0],
                 type: 'line',
                  // 圆滑连接                                  
                 smooth: true,
@@ -271,15 +290,32 @@
                     color: '#00f2f1'  // 线颜色
                 }
             }, {
-                    name: '实际销售额',
-                    data:[40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79],
-                    type: 'line',
-                    smooth: true,
-                    itemStyle: {
-                        color: '#ed3f35'  // 线颜色
+                name: '实际销售额',
+                data:data.year[1],
+                type: 'line',
+                smooth: true,
+                itemStyle: {
+                color: '#ed3f35'  // 线颜色
                       }
             }]
         };
         var myChart = echarts.init($('.line')[0]);
         myChart.setOption(option);
+
+        $('.sales').on('click', '.caption a', function () {
+            $(this).addClass('active').siblings().removeClass('active')
+            var currdata = data[this.dataset.type];
+            option.series[0].data = currdata[0]
+            option.series[1].data = currdata[1]
+            myChart.setOption(option);
+        })
+
+        // 自动切换
+        var index = 0
+        var allTab = $('.sales .caption a')
+        setInterval(() => {
+            index++
+            if (index >= 4) index = 0
+            allTab.eq(index).click()
+        }, 2000);
     })()
