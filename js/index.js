@@ -2,33 +2,33 @@
 (function () {
     // 将rem设置的代码封装为函数
     function setRem() {
-      // 1 获取页面的宽度
-      var html = document.documentElement; // 获取html标签 querySelector('html')
-      var width = html.clientWidth;
-  
-      // 2 进行尺寸边界值检测
-      if (width < 1024) {
-        width = 1024; // 如果超过最小值，设置为最小值即可
-      }
-      if (width > 1920) {
-        width = 1920; // 如果超过最大值，设置为最大值即可
-      }
-  
-      // 3 计算一个rem的大小
-      var fSize = width / 80;
-      // 4 设置给html标签的font-size
-      html.style.fontSize = fSize + 'px';
+        // 1 获取页面的宽度
+        var html = document.documentElement; // 获取html标签 querySelector('html')
+        var width = html.clientWidth;
+
+        // 2 进行尺寸边界值检测
+        if (width < 1024) {
+            width = 1024; // 如果超过最小值，设置为最小值即可
+        }
+        if (width > 1920) {
+            width = 1920; // 如果超过最大值，设置为最大值即可
+        }
+
+        // 3 计算一个rem的大小
+        var fSize = width / 80;
+        // 4 设置给html标签的font-size
+        html.style.fontSize = fSize + 'px';
     }
-  
-  
+
+
     // 1 页面加载中调用一次，进行rem的初始设置
     setRem();
-  
+
     // 2 窗口尺寸改变时调用一次，进行rem的重新设置
     //  - window.onresize 窗口尺寸改变时触发
     window.onresize = setRem;
 })();
-  
+
 
 (function () {
     // tab切换
@@ -49,7 +49,7 @@
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
-        
+
         series: [
             {
                 name: '点位统计',
@@ -83,12 +83,12 @@
                     length2: 10
                 }
             },
-           
+
         ],
         // 每块图颜色
         color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff']
     };
-    
+
     var myChart = echarts.init($('.pie')[0]);
     myChart.setOption(option);
 })()
@@ -212,7 +212,7 @@
             $allTab.eq(index).click()
         }, 2000);
     })()
-    
+
     // 销售统计
     ; (function () {
         var data = {
@@ -319,7 +319,7 @@
             allTab.eq(index).click()
         }, 2000);
     })()
-    
+
     ; (function () {
         var option = {
             series: [
@@ -346,8 +346,9 @@
                                         { offset: 1, color: '#005fc1' }
                                     ]
                                 }
-                        }},
-                        {value: 100,itemStyle: { color: '#12274d' } },
+                            }
+                        },
+                        { value: 100, itemStyle: { color: '#12274d' } },
                         { value: 200, itemStyle: { color: 'transparent' } } // 透明隐藏第三块区域
                     ]
                 }
@@ -355,4 +356,46 @@
         };
         var myChart = echarts.init($('.gauge')[0]);
         myChart.setOption(option);
+    })()
+
+
+    // 热销排行
+    ; (function () {
+        var data = [
+            { name: '可爱多', num: '9,086' },
+            { name: '娃哈哈', num: '8,341' },
+            { name: '喜之郎', num: '7,407' },
+            { name: '八喜', num: '6,080' },
+            { name: '小洋人', num: '6,724' },
+            { name: '好多鱼', num: '2,170' },
+        ]
+        $('.province').on('mouseenter', '.sup li', function () {
+            // 样式
+            $(this).addClass('active').siblings().removeClass('active')
+            // 打乱数据
+            var randomData = data.sort(function (a, b) {
+                return 0.5 - Math.random()
+            })
+            // 拼接字符串
+            var html = ''
+            randomData.forEach(function (item) {
+                html += `<li><span>${item.name}</span><span>${item.num} <s class="icon-up"></s></span></li>`
+            })
+            // 渲染
+            $('.sub').html(html)
+        })
+        // 所有的LI
+        var $lis = $('.province .sup li')
+        // 第一个默认激活
+        $lis.eq(0).mouseenter()
+
+        // 开启定时器 切换
+        var index = 0
+        setInterval(function () {
+            index++
+            // 大于等于5索引切换到0索引
+            if (index >= 5) index = 0
+            // 选中对应tab触发点击
+            $lis.eq(index).mouseenter()
+        }, 1000)
     })()
