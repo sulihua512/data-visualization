@@ -656,6 +656,8 @@
                     return res;
                 }
             },
+            visualMap: { //图例值控制
+                min: 0,
                 max: 1,
                 calculable: true,
                 show: true,
