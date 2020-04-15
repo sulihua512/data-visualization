@@ -273,3 +273,47 @@ a {
     }
 }
 
+
+
+// 订单区域
+.order {
+    height: 6.167rem;
+    .filter  {
+        display: flex;
+        a {
+            padding: 0 0.75rem;
+            display: block;
+            height: 0.75rem;
+            line-height: 1;
+            color: #1950c4;
+            font-size: 0.75rem;
+            border-right: 0.083rem solid #00f2f1;
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                border-right: none;
+            }
+            &.active {
+                color: #fff;
+                font-size: 0.833rem;
+            }
+        }
+    }
+    .data {
+        display: flex;
+        margin-top: 0.833rem;
+        .item {
+            width: 50%;
+        }
+    }
+    h4 {
+        font-size: 1.167rem;
+        color: #fff;
+        margin-bottom: 0.417rem;
+    }
+    span {
+        color: #4c9bfd;
+        font-size: 0.667rem;
+    }
+}
