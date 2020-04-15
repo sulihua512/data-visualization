@@ -95,23 +95,23 @@
 
     ; (function () {
         var item = {
-            name:'',
+            name: '',
             value: 1200,
             // 柱子颜色
             itemStyle: {
-              color: '#254065'
+                color: '#254065'
             },
             // 鼠标经过柱子颜色
             emphasis: {
-              itemStyle: {
-                color: '#254065'
-              }
+                itemStyle: {
+                    color: '#254065'
+                }
             },
             // 工具提示隐藏
             tooltip: {
-              extraCssText: 'opacity:0'
+                extraCssText: 'opacity:0'
             }
-          }
+        }
         var option = {
             color: ['#3398DB'],
             tooltip: {
@@ -124,7 +124,7 @@
                 left: '0%',
                 right: '3%',
                 bottom: '3%',
-                top:'4%',
+                top: '4%',
                 containLabel: true,  // 是否包含文本
                 show: true,
                 borderColor: 'rgba(0, 240, 255, 0.3)'
@@ -134,7 +134,7 @@
                     type: 'category',
                     data: ['上海', '广州', '北京', '深圳', '合肥', '', '......', '', '杭州', '厦门', '济南', '成都', '重庆'],
                     axisTick: {
-                        alignWithLabel: false ,   // true意思：图形在刻度中间
+                        alignWithLabel: false,   // true意思：图形在刻度中间
                         show: false
                     },
                     axisLabel: {
@@ -163,21 +163,52 @@
                     name: '直接访问',
                     type: 'bar',
                     barWidth: '60%',
-                    data:[2100,1900,1700,1560,1400,item,item,item,900,750,600,480,240],
+                    data: [2100, 1900, 1700, 1560, 1400, item, item, item, 900, 750, 600, 480, 240],
                     itemStyle: {
                         // 提供的工具函数生成渐变颜色
                         color: new echarts.graphic.LinearGradient(
-                          // (x1,y2) 点到点 (x2,y2) 之间进行渐变
-                          0, 0, 0, 1,
-                          [
-                            {offset: 0, color: '#00fffb'}, // 0 起始颜色
-                            {offset: 1, color: '#0061ce'}  // 1 结束颜色
-                          ]
+                            // (x1,y2) 点到点 (x2,y2) 之间进行渐变
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#00fffb' }, // 0 起始颜色
+                                { offset: 1, color: '#0061ce' }  // 1 结束颜色
+                            ]
                         )
-                      }
+                    }
                 }
             ]
         };
         var myChart = echarts.init($('.bar')[0]);
-        myChart.setOption(option);      
-})()
+        myChart.setOption(option);
+    })()
+
+    // 订单区域-效果
+    ; (function () {
+     // 1. 准备数据
+        var data = {
+            day365: { orders: '20,301,987', amount: '99834' },
+            day90: { orders: '301,987', amount: '9834' },
+            day30: { orders: '1,987', amount: '3834' },
+            day1: { orders: '987', amount: '834' }
+        }   
+        // 获取显示 订单数量 容器
+        var $h4Orders =  $('.order h4:eq(0)')
+        // 获取显示 金额数量 容器
+        var $h4Amount = $('.order h4:eq(1)')
+        $('.order').on('click', '.filter a', function () {
+            // 2. 点击切换激活样式
+            $(this).addClass('active').siblings().removeClass('active')
+            // 3. 点击切换数据
+            var currdata = data[this.dataset.key]
+            $h4Orders.html(currdata.orders)
+            $h4Amount.html(currdata.amount)
+        })
+        // 4. 开启定时器切换数据
+        var index = 0
+        var $allTab = $('.order .filter a')
+        setInterval(() => {
+            index++;
+            if (index >= 4) index = 0
+            $allTab.eq(index).click()
+        }, 5000);
+    })()
