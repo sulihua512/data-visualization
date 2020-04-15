@@ -373,3 +373,50 @@ a {
   color: #fff;
   font-size: 1.333rem;
 }
+.quarter .inner {
+  margin: 0 -0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+.quarter .inner .chart {
+  flex: 1;
+  padding-top: 0.75rem;
+}
+.quarter .inner .chart .box {
+  position: relative;
+}
+.quarter .inner .chart .box .label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -30%);
+  color: #fff;
+  font-size: 1.25rem;
+}
+.quarter .inner .chart .box .label small {
+  font-size: 50%;
+}
+.quarter .inner .chart .gauge {
+  height: 3.5rem;
+}
+.quarter .inner .data {
+  display: flex;
+  justify-content: space-between;
+}
+.quarter .inner .item {
+  width: 50%;
+}
+.quarter .inner h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+.quarter .inner span {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #4c9bfd;
+  font-size: 0.583rem;
+}
