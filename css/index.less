@@ -445,6 +445,131 @@ a {
         overflow: hidden;
         color: #4c9bfd;
         font-size: 0.583rem;
-    }
-    
+    }  
 }
+
+
+// 排行榜
+.top {
+    height: 11.8rem;
+    .inner {
+        display: flex;
+    }
+    .all {
+        display: flex;
+        flex-direction: column;
+        width: 7rem;
+        color: #4c9bfd;
+        font-size: 0.6rem;
+        vertical-align: middle;
+        ul {
+            padding-left: 0.5rem;
+            margin-top: 0.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            li {
+                overflow: hidden;
+            }
+        }
+        [class^="icon-"] {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+    }
+    .province {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        i {
+            padding: 0 0.5rem;
+            margin-top: 0.208rem;
+            float: right;
+            color: #0bace6;
+            font-size: 0.583rem;
+            font-style: normal;
+        }
+        s {
+            display: inline-block;
+            transform: scale(0.8);
+            text-decoration: none;
+        }
+        .icon-up {
+            color: #dc3c33;
+        }
+        .icon-down {
+            color: #36be90;
+        }
+        .data {
+            margin-top: 0.6rem;
+            flex: 1;
+            display: flex;
+            ul {
+                margin-bottom: 0.25rem;
+                flex: 1;
+                line-height: 1;
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                span {
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                &.sup {
+                    font-size: 0.583rem;
+                    li {
+                        color: #4995f4; 
+                        padding: 0.5rem;
+                        
+                    }
+                li.active {
+                        color: #a3c6f2;
+                        background-color: rgba(10, 67, 188, 0.2);
+                    }
+                }
+                &.sub {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    font-size: 0.5rem;
+                    background-color: rgba(10, 67, 188, 0.2);
+                    li {
+                        color: #52ffff;
+                        padding: 0.417rem 0.6rem;
+                      }
+                }
+            }
+        }
+        .clock {
+            position: absolute;
+            top: -1.5rem;
+            right: 1.667rem;
+            font-size: 0.833rem;
+            color: #0bace6;
+            i {
+                margin-right: 5px;
+                font-size: 0.833rem; 
+            }
+          } 
+    }
+}
+@media screen and (max-width: 1600px) {
+    .top span {
+      transform: scale(0.9);
+    }
+    .top .province ul.sup li {
+      padding: 0.4rem 0.5rem;
+    }
+    .top .province ul.sub li {
+      padding: 0.23rem 0.5rem;
+    }
+    .quarter span {
+      transform: scale(0.9);
+    }
+  }
