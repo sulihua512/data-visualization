@@ -217,22 +217,22 @@
     ; (function () {
         var data = {
             year: [
-              [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
-              [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+                [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+                [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
             ],
             quarter: [
-              [23, 75, 12, 97, 21, 67, 98, 21, 43, 64, 76, 38],
-              [43, 31, 65, 23, 78, 21, 82, 64, 43, 60, 19, 34]
+                [23, 75, 12, 97, 21, 67, 98, 21, 43, 64, 76, 38],
+                [43, 31, 65, 23, 78, 21, 82, 64, 43, 60, 19, 34]
             ],
             month: [
-              [34, 87, 32, 76, 98, 12, 32, 87, 39, 36, 29, 36],
-              [56, 43, 98, 21, 56, 87, 43, 12, 43, 54, 12, 98]
+                [34, 87, 32, 76, 98, 12, 32, 87, 39, 36, 29, 36],
+                [56, 43, 98, 21, 56, 87, 43, 12, 43, 54, 12, 98]
             ],
             week: [
-              [43, 73, 62, 54, 91, 54, 84, 43, 86, 43, 54, 53],
-              [32, 54, 34, 87, 32, 45, 62, 68, 93, 54, 54, 24]
+                [43, 73, 62, 54, 91, 54, 84, 43, 86, 43, 54, 53],
+                [32, 54, 34, 87, 32, 45, 62, 68, 93, 54, 54, 24]
             ]
-          }
+        }
         var option = {
             tooltip: {
                 trigger: 'axis'
@@ -281,22 +281,22 @@
                 }
             },
             series: [{
-                name:'预期销售额',
-                data:data.year[0],
+                name: '预期销售额',
+                data: data.year[0],
                 type: 'line',
-                 // 圆滑连接                                  
+                // 圆滑连接                                  
                 smooth: true,
                 itemStyle: {
                     color: '#00f2f1'  // 线颜色
                 }
             }, {
                 name: '实际销售额',
-                data:data.year[1],
+                data: data.year[1],
                 type: 'line',
                 smooth: true,
                 itemStyle: {
-                color: '#ed3f35'  // 线颜色
-                      }
+                    color: '#ed3f35'  // 线颜色
+                }
             }]
         };
         var myChart = echarts.init($('.line')[0]);
@@ -318,4 +318,41 @@
             if (index >= 4) index = 0
             allTab.eq(index).click()
         }, 2000);
+    })()
+    
+    ; (function () {
+        var option = {
+            series: [
+                {
+                    type: 'pie',
+                    radius: ['130%', '150%'],  // 放大图形
+                    center: ['48%', '80%'],  // 往下移动  套住75%文字
+                    label: {
+                        show: false,
+                    },
+                    startAngle: 180,
+                    hoverOffset: 0,  // 鼠标经过不变大
+                    data: [
+                        {
+                            value: 100, itemStyle: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0,
+                                    y: 0,
+                                    x2: 0,
+                                    y2: 1,
+                                    colorStops: [
+                                        { offset: 0, color: '#00c9e0' },
+                                        { offset: 1, color: '#005fc1' }
+                                    ]
+                                }
+                        }},
+                        {value: 100,itemStyle: { color: '#12274d' } },
+                        { value: 200, itemStyle: { color: 'transparent' } } // 透明隐藏第三块区域
+                    ]
+                }
+            ]
+        };
+        var myChart = echarts.init($('.gauge')[0]);
+        myChart.setOption(option);
     })()
